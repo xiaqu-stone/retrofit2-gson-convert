@@ -17,20 +17,17 @@ package com.stone.retrofit2_gson_convert;
 
 import android.support.annotation.NonNull;
 import android.util.Log;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
-
+import okhttp3.ResponseBody;
 import org.json.JSONException;
 import org.json.JSONObject;
+import retrofit2.Converter;
 
 import java.io.IOException;
 import java.io.StringReader;
-
-import okhttp3.ResponseBody;
-import retrofit2.Converter;
 
 final class GsonResponseBodyConverter<T> implements Converter<ResponseBody, T> {
     private final Gson gson;
@@ -65,6 +62,9 @@ final class GsonResponseBodyConverter<T> implements Converter<ResponseBody, T> {
             }
             //仍然失败，将字符串包装到Result的data中返回
             return (T) new Result(-1, "Response json is error", bodyString);
+        } catch (Exception e) {
+            Log.e("GsonResponseConverter", "Gson 解析异常" + e.getMessage());
+            return (T) bodyString;
         } finally {
             value.close();
         }

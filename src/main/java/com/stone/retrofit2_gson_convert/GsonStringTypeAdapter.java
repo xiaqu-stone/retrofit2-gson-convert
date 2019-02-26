@@ -32,7 +32,7 @@ public class GsonStringTypeAdapter extends TypeAdapter<String> {
         if (peek == JsonToken.BOOLEAN) {
             return Boolean.toString(in.nextBoolean());
         }
-
         return in.nextString();
+
     }
 }
