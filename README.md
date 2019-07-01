@@ -5,7 +5,7 @@
 ### gradle
 
 ```
-    implementation "com.sqq.xiaqu:retrofit2-gson-convert:1.0.1"
+    implementation "com.sqq.xiaqu:retrofit2-gson-convert:1.0.3"
     
     //内部依赖，建议在主工程中添加
     implementation "com.google.code.gson:gson:$gson"
